@@ -17,12 +17,18 @@ function quickSortHelper(array, startIndex, endIndex){
   }
   swap(pivotIndex, rightIndex, array)
   const leftSubarrayIsSmaller = rightIndex - 1 - startIndex < endIndex - (rightIndex + 1)
+  //rightIndex - 1 - startIndex: This calculates the size of the left subarray. 
+  //It determines how many elements are between the startIndex and rightIndex - 1
+  //which represents the left side of the pivot.
+  //endIndex - (rightIndex + 1): This calculates the size of the right subarray. 
+  //It determines how many elements are between the rightIndex + 1 and endIndex
+  //which represents the right side of the pivot.
   if(leftSubarrayIsSmaller){
-    quickSortHelper(array, startIndex, rightIndex - 1)
-    quickSortHelper(array, rightIndex + 1, endIndex)
+    quickSortHelper(array, startIndex, rightIndex - 1); // Sort the left subarray
+    quickSortHelper(array, rightIndex + 1, endIndex);   // Then sort the right subarray
   } else {
-    quickSortHelper(array, rightIndex + 1, endIndex)
-    quickSortHelper(array, startIndex, rightIndex - 1)
+    quickSortHelper(array, rightIndex + 1, endIndex);   // Sort the right subarray
+    quickSortHelper(array, startIndex, rightIndex - 1); // Then sort the left subarray
   }
 }
 
@@ -31,3 +37,6 @@ function swap(i, j, array){
   array[j] = array[i]
   array[i] = temp
 }
+
+// Do not edit the line below.
+exports.quickSort = quickSort;
